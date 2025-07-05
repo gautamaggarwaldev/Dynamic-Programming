@@ -4,7 +4,7 @@ using namespace std;
 class Solution
 {
 public:
-    int cutRodRec(vector<int> &price, vector<int> &len, int n, int W, vector<vector<int>> &dp)
+    int cutRodMemo(vector<int> &price, vector<int> &len, int n, int W, vector<vector<int>> &dp)
     {
         if (n == 0 || W == 0)
             return 0;
@@ -14,11 +14,11 @@ public:
         }
         if (W >= len[n - 1])
         {
-            dp[n][W] = max(price[n - 1] + cutRodRec(price, len, n, W - len[n - 1], dp), cutRodRec(price, len, n - 1, W, dp));
+            dp[n][W] = max(price[n - 1] + cutRodMemo(price, len, n, W - len[n - 1], dp), cutRodMemo(price, len, n - 1, W, dp));
         }
         else
         {
-            dp[n][W] = cutRodRec(price, len, n - 1, W, dp);
+            dp[n][W] = cutRodMemo(price, len, n - 1, W, dp);
         }
         return dp[n][W];
     }
@@ -32,7 +32,7 @@ public:
         }
         int W = len.size();
         vector<vector<int>> dp(n + 1, vector<int>(W + 1, -1));
-        int ans = cutRodRec(price, len, n, W, dp);
+        int ans = cutRodMemo(price, len, n, W, dp);
         return ans;
     }
 };
