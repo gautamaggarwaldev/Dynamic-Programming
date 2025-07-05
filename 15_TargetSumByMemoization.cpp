@@ -4,7 +4,7 @@ using namespace std;
 class Solution
 {
 public:
-    int findTargetSumWaysMemo(vector<int> &nums, int sum, int n, vector<vector<int>> &dp)
+    int subsetSum(vector<int> &nums, int sum, int n, vector<vector<int>> &dp)
     {
         if (n == 0)
         {
@@ -19,11 +19,11 @@ public:
         }
         if (sum >= nums[n - 1])
         {
-            dp[n][sum] = findTargetSumWaysMemo(nums, sum - nums[n - 1], n - 1, dp) + findTargetSumWaysMemo(nums, sum, n - 1, dp);
+            dp[n][sum] = subsetSum(nums, sum - nums[n - 1], n - 1, dp) + subsetSum(nums, sum, n - 1, dp);
         }
         else
         {
-            dp[n][sum] = findTargetSumWaysMemo(nums, sum, n - 1, dp);
+            dp[n][sum] = subsetSum(nums, sum, n - 1, dp);
         }
         return dp[n][sum];
     }
@@ -41,7 +41,7 @@ public:
         }
         int sum = (Tsum + target) / 2;
         vector<vector<int>> dp(n + 1, vector<int>(sum + 1, -1));
-        int ans = findTargetSumWaysMemo(nums, sum, n, dp);
+        int ans = subsetSum(nums, sum, n, dp);
         return ans;
     }
 };
