@@ -35,9 +35,9 @@ public:
         {
             Tsum += nums[i];
         }
-        if ((Tsum + target) % 2 != 0 || Tsum < abs(target)) 
+        if ((Tsum + target) % 2 != 0 || Tsum < abs(target))  // IMP check if the target is achievable
         {
-            return 0; // IMP
+            return 0; 
         }
         int sum = (Tsum + target) / 2;
         vector<vector<int>> dp(n + 1, vector<int>(sum + 1, -1));
