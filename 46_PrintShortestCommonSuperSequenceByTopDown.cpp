@@ -44,6 +44,8 @@ public:
             }
             else
             {
+                // If characters are not equal, we need to take the character from the string which has the larger LCS value
+                // This ensures that we are building the shortest common supersequence
                 if (dp[i - 1][j] > dp[i][j - 1])
                 {
                     ans += s[i - 1];
@@ -56,6 +58,7 @@ public:
                 }
             }
         }
+        // If there are remaining characters in either string, we add them to the result
         while (i > 0)
         {
             ans += s[i - 1];
