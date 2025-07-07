@@ -22,7 +22,7 @@ public:
         {
             for (int j = 1; j < m + 1; j++)
             {
-                if (s[i - 1] == t[j - 1] && i != j)
+                if (s[i - 1] == t[j - 1] && i != j) // Ensure that we are not matching the same character in the same position Note: The condition i != j is crucial to avoid counting the same character in the same position
                 {
                     dp[i][j] = 1 + dp[i - 1][j - 1];
                 }
