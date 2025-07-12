@@ -19,27 +19,8 @@ public:
         {
             int mid = (low + high) / 2;
 
-            int left, right;
-
-            if (dp[k - 1][mid - 1] != -1)
-            {
-                left = dp[k - 1][mid - 1];
-            }
-            else
-            {
-                left = mcm(k - 1, mid - 1, dp);
-                dp[k - 1][mid - 1] = left;
-            }
-
-            if (dp[k][n - mid] != -1)
-            {
-                right = dp[k][n - mid];
-            }
-            else
-            {
-                right = mcm(k, n - mid, dp);
-                dp[k][n - mid] = right;
-            }
+            int left = mcm(k-1,mid-1,dp);
+            int right = mcm(k,n-mid,dp);
 
             int temp = 1 + max(left, right);
             mn = min(mn, temp);
